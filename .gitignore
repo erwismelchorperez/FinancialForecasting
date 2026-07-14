@@ -40,6 +40,9 @@ data/
 *.npz
 *.pth
 *.pt
+*.png
+*.jpg
+*.jpeg
 
 # Editores
 .vscode/
