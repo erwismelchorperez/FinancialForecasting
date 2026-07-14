@@ -1,0 +1,70 @@
+# Entorno virtual
+venv/
+env/
+.venv/
+.env/
+pyvenv.cfg
+.python-version
+
+# Archivos de Python
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyd
+*.so
+*.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+
+# Archivos CSV y datos
+*.csv
+*.xlsx
+*.xls
+*.parquet
+*.feather
+*.json
+*.jsonl
+*.ndjson
+*.pkl
+*.pickle
+*.h5
+*.hdf5
+*.joblib
+*.db
+*.sqlite
+*.sqlite3
+data/
+*.npy
+*.npz
+*.pth
+*.pt
+
+# Editores
+.vscode/
+.idea/
+.DS_Store
+*.swp
+
+# Archivos de entorno
+.env
+.env.*
+!.env.example
+secrets.py
+credentials.json
+*.key
+*.pem
+
+# Logs y bases de datos
+*.log
+*.db
+*.sqlite
+*.sqlite3
+
+# Pruebas
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.mypy_cache/
