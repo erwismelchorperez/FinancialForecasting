@@ -15,7 +15,10 @@ class FinancialForecastSystem:
         self.df = df
 
     def run(self):
-        cuentas = ["ACTIVO","Disponibilidades","Inversiones en valores","Deudores por reporto","Cartera de crédito vigente","Créditos comerciales","Créditos de consumo","Créditos a la vivienda"]
+        #cuentas = ["ACTIVO","Disponibilidades","Inversiones en valores","Deudores por reporto","Cartera de crédito vigente","Créditos comerciales","Créditos de consumo","Créditos a la vivienda"]
+        cuentas = ["ACTIVO","Inversiones en valores"]
+
+
         # 🔹 1. Preprocesamiento
         prep = FinancialPreprocessor(self.df)
         df_clean = prep.clean_data()
@@ -47,14 +50,15 @@ class FinancialForecastSystem:
             all_results[acc] = trainer.train_account(df_acc)
         """
         for acc in accounts:
+            print(USE_ACCOUNT_DEPENDENCIES,"  ",acc,"  ",ACCOUNT_DEPENDENCIES)
             if (USE_ACCOUNT_DEPENDENCIES and acc in ACCOUNT_DEPENDENCIES):
                 print("🔗 Usando cuentas dependientes para:",acc)
-                df_acc = dependency_builder.build(acc)
+                df_acc = dependency_builder.build(account_id)
             else:
+                df_acc = splitter.get_account_df(acc)
                 if acc == "Inversiones en valores":
                     print(df_acc.head())
-                    print(df_acc.columns)
-                df_acc = splitter.get_account_df(acc)
+                    print(df_acc.columns)                
                 #all_results[acc] = trainer.train_account(df_acc)
             all_results[acc] = trainer.train_account(df_acc)
 
