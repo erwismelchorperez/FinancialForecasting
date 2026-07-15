@@ -12,7 +12,8 @@ def main():
     # 1. CARGA DE DATOS
     # ===============================
     print("📥 Cargando datos...")
-    df = pd.read_excel("data/raw/Tzaulan.xlsx")
+    #df = pd.read_excel("data/raw/Tzaulan.xlsx")
+    df = pd.read_excel("data/raw/Historicos Tzaulan.xlsx")
 
     # ===============================
     # 2. INICIALIZAR SISTEMA
