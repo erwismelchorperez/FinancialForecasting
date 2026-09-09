@@ -7,6 +7,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from xgboost import XGBRegressor
 from statsmodels.tsa.statespace.sarimax import SARIMAX
+"""
 class ModelFactory:
 
     @staticmethod
@@ -31,4 +32,44 @@ class ModelFactory:
             "AUTO_ARIMA": "AUTO_ARIMA",
             #"TBATS": "TBATS",
             "THETA": "THETA"            
+        }
+"""
+# src/models/model_factory.py
+
+class ModelFactory:
+    
+    @staticmethod
+    def get_models():
+        """
+        Retorna todos los modelos disponibles.
+        """
+        return {
+            "SARIMAX": "SARIMAX",
+            "ETS": "ETS",
+            "AUTO_ARIMA": "AUTO_ARIMA",
+            #"TBATS": "TBATS",
+            "THETA": "THETA",
+            "PROPHET": "PROPHET",
+        }
+    
+    @staticmethod
+    def get_ml_models():
+        """Retorna solo modelos de Machine Learning."""
+        return {
+            "RANDOM_FOREST": "RANDOM_FOREST",
+            "GRADIENT_BOOSTING": "GRADIENT_BOOSTING",
+            "XGBOOST": "XGBOOST",
+            "LIGHTGBM": "LIGHTGBM"
+        }
+    
+    @staticmethod
+    def get_time_series_models():
+        """Retorna solo modelos de series temporales."""
+        return {
+            "SARIMAX": "SARIMAX",
+            "ETS": "ETS",
+            "AUTO_ARIMA": "AUTO_ARIMA",
+            #"TBATS": "TBATS",
+            "THETA": "THETA",
+            "PROPHET": "PROPHET"
         }
