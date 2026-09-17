@@ -8,7 +8,13 @@ ACCOUNT_DEPENDENCIES = {
 }
 """
 ACCOUNT_DEPENDENCIES = {
-    7: {# cuenta objetivo
-        "dependencies": [64,127]
+    5: {# cuenta objetivo
+        "dependencies": [62,125]
+    },
+    62: {# cuenta objetivo
+        "dependencies": [5,125]
+    },
+    125: {# cuenta objetivo
+        "dependencies": [62,5]
     }
 }

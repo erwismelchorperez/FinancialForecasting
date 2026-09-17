@@ -5,9 +5,7 @@ from src.models.trainer import AccountModelTrainer
 from src.forecasting.forecast_engine import ForecastEngine
 from src.forecasting.hierarchical import HierarchicalForecast
 from src.utils.date_utils import generate_future_dates
-from config.config import HIERARCHY, FORECAST_STEPS, USE_ACCOUNT_DEPENDENCIES
-from src.preprocessing.account_dependency_builder import AccountDependencyBuilder
-from config.account_dependencies import ACCOUNT_DEPENDENCIES
+from config.config import HIERARCHY, FORECAST_STEPS
 
 class FinancialForecastSystem:
 
@@ -24,10 +22,6 @@ class FinancialForecastSystem:
         df_clean = prep.clean_data()
         df_long = prep.to_long()
 
-        if USE_ACCOUNT_DEPENDENCIES:
-            dependency_builder = AccountDependencyBuilder(df_long)
-
-
         df_long.to_csv("./data/processed/procesado.csv", index=False)
 
         #Filtrar para solo quedarme con uno 
@@ -43,24 +37,11 @@ class FinancialForecastSystem:
 
         all_results = {}
 
-        """
         # primera versión sin las dependencias, podría manerala como un if else 
         for acc in accounts:
             df_acc = splitter.get_account_df(acc)
             all_results[acc] = trainer.train_account(df_acc)
-        """
-        for acc in accounts:
-            print(USE_ACCOUNT_DEPENDENCIES,"  ",acc,"  ",ACCOUNT_DEPENDENCIES)
-            if (USE_ACCOUNT_DEPENDENCIES and acc in ACCOUNT_DEPENDENCIES):
-                print("🔗 Usando cuentas dependientes para:",acc)
-                df_acc = dependency_builder.build(account_id)
-            else:
-                df_acc = splitter.get_account_df(acc)
-                if acc == "Inversiones en valores":
-                    print(df_acc.head())
-                    print(df_acc.columns)                
-                #all_results[acc] = trainer.train_account(df_acc)
-            all_results[acc] = trainer.train_account(df_acc)
+
 
         # 🔹 3. Forecast
         engine = ForecastEngine(HIERARCHY)
